@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock Paper Scissors</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+  }
+  h1 {
+    color: #333;
+  }
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #result {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+<h1>Rock Paper Scissors</h1>
+<button onclick="play('rock')">Rock</button>
+<button onclick="play('paper')">Paper</button>
+<button onclick="play('scissors')">Scissors</button>
+<div id="result"></div>
+<script>
+  function computerPlay() {
+    const options = ['rock', 'paper', 'scissors'];
+    return options[Math.floor(Math.random() * options.length)];
+  }
+
+  function play(playerSelection) {
+    const computerSelection = computerPlay();
+    const resultDisplay = document.getElementById('result');
+    
+    function playRound(playerSelection, computerSelection) {
+      const winConditions = {
+        'rock': 'scissors',
+        'paper': 'rock',
+        'scissors': 'paper'
+      };
+
+      if (playerSelection === computerSelection) {
+        return 'It\'s a tie!';
+      } else if (winConditions[playerSelection] === computerSelection) {
+        return 'You win! ' + playerSelection + ' beats ' + computerSelection + '.';
+      } else {
+        return 'You lose! ' + computerSelection + ' beats ' + playerSelection + '.';
+      }
+    }
+
+    resultDisplay.textContent = playRound(playerSelection, computerSelection);
+  }
+</script>
+</body>
+</html>
